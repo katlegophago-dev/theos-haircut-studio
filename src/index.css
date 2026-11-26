@@ -164,10 +164,63 @@
   backdrop-filter: blur(4px);
 }
 
-/* Photography -------------------------------------------------------------
-   Portraits on a black canvas: the photo keeps its own proportions and its
-   left edge dissolves into the canvas, so the hero reads as one scene.
-   ------------------------------------------------------------------------- */
+/* Hero lighting stays behind transparent portraits; edge masks dissolve the
+   cape into the page while leaving the face and haircut clear. */
+.hero-stage {
+  position: relative;
+}
+
+.hero-light {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 72% 29%, rgba(153, 115, 60, 0.2), transparent 48%);
+}
+
+.hero-art {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  max-width: 1360px;
+  margin: auto;
+}
+
+.hero-photo {
+  position: absolute;
+  top: 82px;
+  right: -12px;
+  width: min(78%, 380px);
+  height: 370px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 65%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 65%, transparent 100%);
+}
+
+.hero-photo .hero-portrait {
+  width: 100%;
+  height: 100%;
+  object-position: center top;
+}
+
+.hero-shade {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, transparent 34%, rgba(8, 8, 8, 0.5) 46%, #080808 61%);
+}
+
+.hero-content {
+  position: relative;
+  padding-top: 350px;
+  padding-bottom: 12px;
+}
+
+.hero-copy {
+  max-width: 560px;
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 9.5vw, 3.3rem);
+}
 
 /* Hero crossfade: the outgoing frame clears first, then the next fades in,
    so two faces are never held on screen together. */
@@ -179,18 +232,82 @@
   transition: opacity 200ms ease-out 0ms;
 }
 
-.hero-photo img {
-  object-position: var(--hero-focus-mobile, 50% 40%);
+@media (min-width: 640px) and (max-width: 1023px) {
+  .hero-photo {
+    top: 86px;
+    right: 3%;
+    width: 46%;
+    height: 490px;
+    -webkit-mask-image: linear-gradient(to bottom, #000 65%, transparent), linear-gradient(to right, transparent, #000 15%);
+    mask-image: linear-gradient(to bottom, #000 65%, transparent), linear-gradient(to right, transparent, #000 15%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+
+  .hero-content {
+    min-height: 650px;
+    padding-top: 170px;
+    padding-bottom: 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-copy {
+    max-width: 52%;
+  }
+
+  .hero-title {
+    font-size: clamp(2.1rem, 5.1vw, 3.3rem);
+  }
+
+  .hero-shade {
+    background: linear-gradient(to right, #080808 8%, rgba(8, 8, 8, 0.85) 35%, transparent 69%), linear-gradient(to top, #080808, transparent 35%);
+  }
 }
 
 @media (min-width: 1024px) {
-  .hero-photo {
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 26%);
-    mask-image: linear-gradient(to right, transparent 0%, #000 26%);
+  .hero-stage {
+    height: clamp(640px, 82svh, 780px);
   }
 
-  .hero-photo img {
-    object-position: var(--hero-focus-desktop, 50% 38%);
+  .hero-light {
+    background: radial-gradient(ellipse at 78% 49%, rgba(153, 115, 60, 0.23), transparent 47%), radial-gradient(ellipse at 61% 62%, rgba(107, 96, 78, 0.1), transparent 49%);
+  }
+
+  .hero-photo {
+    top: 88px;
+    right: 0;
+    width: 49%;
+    height: calc(100% - 88px);
+    -webkit-mask-image: linear-gradient(to bottom, #000 81%, transparent 100%), linear-gradient(to right, transparent, #000 18%, #000 94%, transparent);
+    mask-image: linear-gradient(to bottom, #000 81%, transparent 100%), linear-gradient(to right, transparent, #000 18%, #000 94%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+
+  .hero-shade {
+    background: linear-gradient(to right, #080808 5%, rgba(8, 8, 8, 0.93) 30%, rgba(8, 8, 8, 0.45) 43%, transparent 62%), linear-gradient(to top, #080808, transparent 15%);
+  }
+
+  .hero-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding-top: 100px;
+    padding-bottom: 28px;
+  }
+
+  .hero-copy {
+    width: 54%;
+    max-width: none;
+  }
+
+  .hero-title {
+    font-size: clamp(3.2rem, 6vw, 5.2rem);
+  }
+
+  .hero-supporting {
+    max-width: 440px;
   }
 }
 

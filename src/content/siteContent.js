@@ -85,7 +85,8 @@ export const site = {
   hero: {
     eyebrow: "Theo's Haircut Studio · Lyttelton",
     headlineLines: ["Precision.", "Style.", "Confidence."],
-    supporting: "Your next look starts here.",
+    supporting: "Precision in the chair. Good company around it.",
+    experience: "Cuts, Xbox and pool at Theo’s.",
     primaryCta: "Book a cut",
     secondaryCta: "Explore the work",
     slideKeys: ["p4", "p2", "p5"],
@@ -101,6 +102,7 @@ export const site = {
     p2: {
       id: "photo-2",
       src: MEDIA.photo2,
+      heroSrc: "/media/theo-hero-2.webp",
       alt: "Client portrait showing waves and a precisely shaped hairline.",
       caption: "Waves and a precise hairline",
       heroFocus: { mobile: "52% 42%", desktop: "52% 38%" },
@@ -114,6 +116,7 @@ export const site = {
     p4: {
       id: "photo-4",
       src: MEDIA.photo4,
+      heroSrc: "/media/theo-hero-4.webp",
       alt: "Client portrait showing a finished haircut and shaped beard.",
       caption: "Finished cut and shaped beard",
       heroFocus: { mobile: "54% 40%", desktop: "54% 36%" },
@@ -121,6 +124,7 @@ export const site = {
     p5: {
       id: "photo-5",
       src: MEDIA.photo5,
+      heroSrc: "/media/theo-hero-5.webp",
       alt: "Client portrait showing a braided style with a defined hairline.",
       caption: "Braided style, defined hairline",
       heroFocus: { mobile: "48% 44%", desktop: "48% 40%" },

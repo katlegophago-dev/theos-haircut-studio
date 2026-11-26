@@ -88,7 +88,7 @@ export default function Header() {
             : "border-b border-transparent bg-transparent"
         )}
       >
-        <div className="site-container flex h-[68px] items-center justify-between gap-4">
+        <div className="site-container flex h-[68px] items-center justify-between gap-2 sm:gap-4">
           <a href="#top" aria-label="Theo's Haircut Studio — back to top" className="shrink-0">
             <Wordmark />
           </a>
@@ -109,7 +109,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => request()}
-              className="btn-gold h-11 min-h-0 px-4 text-[10.5px] tracking-[0.14em]"
+              className="btn-gold h-11 min-h-0 whitespace-nowrap px-3 text-[10.5px] tracking-[0.14em] sm:px-4"
             >
               {site.hero.primaryCta}
             </button>

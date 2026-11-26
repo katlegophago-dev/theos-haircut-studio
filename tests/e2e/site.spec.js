@@ -1,5 +1,21 @@
 import { test, expect } from "@playwright/test";
 
+test("hero portraits load, can be selected while paused, and respect reduced motion", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByText("Cuts, Xbox and pool at Theo’s.", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Pause slideshow", exact: true }).click();
+  const thirdSlide = page.getByRole("button", { name: "Show photo 3 of 3", exact: true });
+  await thirdSlide.click();
+  await expect(thirdSlide).toHaveAttribute("aria-current", "true");
+  await expect(page.locator(".hero-photo").nth(2)).toHaveCSS("opacity", "1");
+  await expect.poll(() => page.locator(".hero-portrait").evaluateAll((images) => images.every((image) => image.complete && image.naturalWidth > 0))).toBe(true);
+  await expect(page.getByRole("button", { name: "Play slideshow", exact: true })).toBeVisible();
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.getByRole("button", { name: "Play slideshow", exact: true })).toHaveCount(0);
+  await page.getByRole("button", { name: "Show photo 1 of 3", exact: true }).click();
+  await expect(page.locator(".hero-photo").first()).toHaveCSS("opacity", "1");
+});
+
 test("the migrated page renders, loads local media and never calls the former platform", async ({ page }, testInfo) => {
   const platformRequests = [];
   const errors = [];

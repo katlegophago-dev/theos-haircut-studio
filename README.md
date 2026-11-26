@@ -36,6 +36,8 @@ If Chromium is already installed, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to i
 
 `src/content/siteContent.js` contains prices, the R50 appointment surcharge, contact details, social links, image focus positions and media paths. Replace files in `public/media` and update those paths to add new photography or a future studio film. The logo crops assume the original square artwork.
 
+The hero uses separate transparent WebP portraits (`theo-hero-*.webp`) with CSS lighting and edge blending. These are background-cleaned versions of the supplied photographs; the original JPEGs remain in the gallery and service panels. The studio introduction mentions its Xbox and pool table. Add an inside-the-studio video link when that footage is available.
+
 Appointment preferences stay in browser memory until the visitor chooses to continue in WhatsApp. The studio confirms availability and the total there. Date validation uses Africa/Johannesburg.
 
 ## Hosting
